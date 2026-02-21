@@ -110,8 +110,17 @@ void* citireListaMasiniDinFisier(const char* numeFisier) {
 	return lista;
 }
 
-void dezalocareListaMasini(/*lista de masini*/) {
+void dezalocareListaMasini(Nod** lista) {
 	//sunt dezalocate toate masinile si lista de elemente
+	while (*lista) {
+		free((*lista)->info.model);
+		free((*lista)->info.numeSofer);
+		Nod* p = *lista;
+		*lista = (*lista)->next;
+		free(p);
+	}
+
+
 }
 
 float calculeazaPretMediu(/*lista de masini*/) {
@@ -132,7 +141,10 @@ float calculeazaPretulMasinilorUnuiSofer(/*lista masini*/ const char* numeSofer)
 int main() {
 
 	Nod* lista = citireListaMasiniDinFisier("masini.txt");
+
 	afisareListaMasini(lista);
+
+	dezalocareListaMasini(lista);
 
 
 	return 0;
