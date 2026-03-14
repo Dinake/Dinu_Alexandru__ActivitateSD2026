@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<malloc.h>
+#include<string.h>
 
 typedef struct Depozit Depozit;
 
