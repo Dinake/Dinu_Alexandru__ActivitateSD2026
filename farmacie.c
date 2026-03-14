@@ -1,8 +1,12 @@
+// Implementati o aplicatie in limbajul C ce rezolva probleme de gestionare regionala a unor farmacii.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// 1. Structura Farmacie
+// Cerinta 1: Definiti structura Farmacie ce contine: denumire farmacie (char*), suprafata spatiu
+// comercial in m2 (float), nr angajati (unsigned char), adresa (char*).
+// Creati o structura de tip lista dubla pentru cel putin 5 farmacii. (2p)
 struct Farmacie {
     char* denumire;        // denumire farmacie
     float suprafata;       // suprafata spatiu comercial in m^2
@@ -112,7 +116,10 @@ void traversareInapoi(struct Nod* head) {
     }
 }
 
-// ====== 2. Numar farmacii cu suprafata < prag ======
+// Cerinta 2: Implementati functia care determina numarul de farmacii din lista de mai sus cu
+// suprafata spatiu comercial mai mica decat un prag specificat ca parametru al functiei.
+// Functia implementata se apeleaza in functia main(), iar rezultatul apelului se afiseaza
+// in consola de executie a aplicatiei. (2p)
 int numaraFarmaciiSuprafata(struct Nod* head, float prag) {
     int count = 0;
     struct Nod* temp = head;
@@ -124,7 +131,10 @@ int numaraFarmaciiSuprafata(struct Nod* head, float prag) {
     return count;
 }
 
-// ====== 3. Stergere farmacii cu nrAngajati > prag ======
+// Cerinta 3: Implementati functia care elimina din lista dubla creata mai sus toate farmaciile cu un
+// numar de angajati mai mare decat un prag specificat ca parametru al functiei.
+// Functia implementata se apeleaza in functia main(), iar operatia de stergere se valideaza prin
+// traversarea listei duble inainte si dupa apelul functiei. (2p)
 void stergeFarmaciiAngajati(struct Nod** head, unsigned char prag) {
     struct Nod* temp = *head;
     while (temp != NULL) {
@@ -148,10 +158,10 @@ void stergeFarmaciiAngajati(struct Nod** head, unsigned char prag) {
     }
 }
 
-// ====== 4. Copiere in vector dupa lant comercial ======
-// Returneaza un vector alocat dinamic cu farmacii din acelasi lant comercial
-// (farmacii a caror denumire contine lantul specificat).
-// Vectorul NU partajeaza date cu lista (deep copy).
+// Cerinta 4: Implementati functia care copiaza intr-un vector toate farmaciile din lista dubla creata
+// mai sus care fac parte din acelasi lant comercial. Vectorul nu partajeaza date ale
+// farmaciilor cu structura lista de mai sus. Functia implementata se apeleaza in functia
+// main(), iar rezultatul apelului (vector) se afiseaza in consola de executie a aplicatiei.
 struct Farmacie* copieVectorLant(struct Nod* head, const char* lant, int* dimensiune) {
     *dimensiune = 0;
     // Numaram cate farmacii fac parte din lantul respectiv
@@ -194,7 +204,7 @@ void eliberareLista(struct Nod** head) {
 int main() {
     struct Nod* lista = NULL;
 
-    // 1. Creare lista dubla cu cel putin 5 farmacii
+    // Cerinta 1: Creare lista dubla cu cel putin 5 farmacii
     printf("===== 1. Creare lista dubla cu 6 farmacii =====\n\n");
 
     inserareSfarsit(&lista, initFarmacie("Catena Centru",       120.5,  8,  "Str. Victoriei 10, Bucuresti"));
@@ -209,13 +219,13 @@ int main() {
     printf("\nTraversare inapoi:\n");
     traversareInapoi(lista);
 
-    // 2. Numara farmacii cu suprafata < prag
+    // Cerinta 2: Numara farmacii cu suprafata < prag
     printf("\n===== 2. Numar farmacii cu suprafata < 100 m2 =====\n\n");
     float pragSuprafata = 100.0f;
     int numar = numaraFarmaciiSuprafata(lista, pragSuprafata);
     printf("Farmacii cu suprafata mai mica de %.1f m2: %d\n", pragSuprafata, numar);
 
-    // 3. Stergere farmacii cu nrAngajati > prag si validare prin traversare
+    // Cerinta 3: Stergere farmacii cu nrAngajati > prag si validare prin traversare
     printf("\n===== 3. Stergere farmacii cu nr. angajati > 7 =====\n\n");
     unsigned char pragAngajati = 7;
 
@@ -231,7 +241,7 @@ int main() {
     printf("\nDUPA stergere - traversare inapoi:\n");
     traversareInapoi(lista);
 
-    // 4. Copiere in vector farmacii din acelasi lant comercial
+    // Cerinta 4: Copiere in vector farmacii din acelasi lant comercial
     printf("\n===== 4. Copiere in vector farmacii din lantul 'Catena' =====\n\n");
     int dimVector = 0;
     struct Farmacie* vector = copieVectorLant(lista, "Catena", &dimVector);

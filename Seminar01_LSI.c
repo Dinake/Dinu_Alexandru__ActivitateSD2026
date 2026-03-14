@@ -79,11 +79,11 @@ void adaugaMasinaInLista(Nod* *lista, Masina masinaNoua) {
 
 }
 
-void adaugaLaInceputInLista(/*lista de masini*/ Masina masinaNoua) {
+//void adaugaLaInceputInLista(/*lista de masini*/ Masina masinaNoua) {
 	//adauga la inceputul listei o noua masina pe care o primim ca parametru
 
 
-}
+//}
 
 void afisareListaMasini(Nod* lista) {
 	//afiseaza toate elemente de tip masina din lista simplu inlantuita
@@ -128,15 +128,15 @@ float calculeazaPretMediu(/*lista de masini*/) {
 	return 0;
 }
 
-void stergeMasiniDinSeria(/*lista masini*/ char serieCautata) {
+//void stergeMasiniDinSeria(/*lista masini*/ char serieCautata) {
 	//sterge toate masinile din lista care au seria primita ca parametru.
 	//tratati situatia ca masina se afla si pe prima pozitie, si pe ultima pozitie
-}
+//}
 
-float calculeazaPretulMasinilorUnuiSofer(/*lista masini*/ const char* numeSofer) {
+//float calculeazaPretulMasinilorUnuiSofer(/*lista masini*/ const char* numeSofer) {
 	//calculeaza pretul tuturor masinilor unui sofer.
-	return 0;
-}
+///	return 0;
+//}
 
 int main() {
 
@@ -144,7 +144,7 @@ int main() {
 
 	afisareListaMasini(lista);
 
-	dezalocareListaMasini(lista);
+	dezalocareListaMasini(&lista);
 
 
 	return 0;

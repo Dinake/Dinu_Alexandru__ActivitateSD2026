@@ -17,6 +17,8 @@ struct Telefon initializare(int id, int ram,const char* producator, float pret, 
     t.id=id;
     t.RAM=ram;
     t.producator=(char*)malloc(sizeof(char)*(strlen(producator)+1));
+    
+
 
     strcpy_s(t.producator,strlen(producator)+1,producator); 
     //primul parametru este destinatia - unde vreau sa copiez, apoi cate caractere sa copiez si ultimul este dursa - de unde vreau sa copiez
