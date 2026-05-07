@@ -123,6 +123,29 @@ int numarNoduri(Nod* radacina) {
     return 1 + numarNoduri(radacina->stanga) + numarNoduri(radacina->dreapta);
 }
 
+// Verifica daca arborele este un ABC valid
+int esteABC(Nod* nod, int minim, int maxim) {
+    if (nod == NULL)
+        return 1;
+    if (nod->cheie <= minim || nod->cheie >= maxim)
+        return 0;
+    return esteABC(nod->stanga, minim, nod->cheie) &&
+           esteABC(nod->dreapta, nod->cheie, maxim);
+}
+
+// Afiseaza arborele vizual (rotit 90 grade, dreapta sus)
+void afisareVizuala(Nod* radacina, int spatiu) {
+    if (radacina == NULL)
+        return;
+    spatiu += 5;
+    afisareVizuala(radacina->dreapta, spatiu);
+    printf("\n");
+    for (int i = 5; i < spatiu; i++)
+        printf(" ");
+    printf("%d\n", radacina->cheie);
+    afisareVizuala(radacina->stanga, spatiu);
+}
+
 // Elibereaza memoria alocata pentru intreg arborele
 void elibereaza(Nod* radacina) {
     if (radacina != NULL) {
@@ -167,6 +190,8 @@ int main() {
         printf("6. Afisare post-ordine\n");
         printf("7. Inaltimea arborelui\n");
         printf("8. Numarul de noduri\n");
+        printf("9. Afisare vizuala arbore\n");
+        printf("10. Verifica daca e ABC valid\n");
         printf("0. Iesire\n");
         printf("Optiunea ta: ");
         scanf("%d", &optiune);
@@ -212,6 +237,17 @@ int main() {
                 break;
             case 8:
                 printf("Numarul de noduri: %d\n", numarNoduri(radacina));
+                break;
+            case 9:
+                printf("Afisare vizuala arbore:\n");
+                afisareVizuala(radacina, 0);
+                printf("\n");
+                break;
+            case 10:
+                if (esteABC(radacina, -2147483648, 2147483647))
+                    printf("Arborele este un ABC valid.\n");
+                else
+                    printf("Arborele NU este un ABC valid.\n");
                 break;
             case 0:
                 printf("La revedere!\n");
